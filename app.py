@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-
+from keras.models import load_model
+trained_model = load_model('trained_model.h5')
 
 
 
@@ -19,6 +20,15 @@ def test_data():
 
     elif request.method == 'GET':
 
+        data = request.get_json(force=True)
+
+
+        #get data from json post request
+        X_new=data['test_data']
+
+
+        #load saved model
+        trained_model = load_model('trained_model.h5')
         
 
         return jsonify({"GET Method":"Data"})
