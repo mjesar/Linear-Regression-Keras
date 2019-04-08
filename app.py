@@ -66,9 +66,11 @@ def test_data():
 
     elif request.method == 'GET':
 
-
-
-        return jsonify({"GET Method":"Data"})
+        # get data from csv
+        dfObj = pd.read_csv("Predictions.csv")
+        jsonfiles = json.loads(dfObj[["Data","Predicted"]].to_json(orient='records'))
+        index_json = json.loads(dfObj[["ID"]].to_json(orient='records'))
+        return jsonify({"data":jsonfiles})
 
 
 
