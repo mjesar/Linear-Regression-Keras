@@ -55,12 +55,12 @@ def test_data():
         #print values inputed and pridected
         print("X=%s, Predicted=%s" % (X_new[0], y_new[0]))
 
-        #x_new_json = json.loads(x_new_json[0].to_json(orient='records'))
-        #y_new_json = json.loads(y_new[0].to_json(orient='records'))
-        #print(y_new_json)
+        x_new_json = json.loads(df["Data"].to_json(orient='records'))
+        y_new_json = json.loads(df["Predicted"].to_json(orient='records'))
+        print(x_new_json)
 
 
-        return jsonify({X_new_json:""})
+        return jsonify({X_new_json:y_new_json})
 
 
 
